@@ -84,32 +84,57 @@ public class Electrodomestico {
             this.color = COLOR_DEF;
         }
     }
-    
-    private void comprovarConsumo(String consumoEnerg){
-        String tiposConsumo []={"A","B","C","D","E","F"};
-        boolean find=false;
-        for(int i = 0;i<tiposConsumo.length && !find;i++){
-            if(tiposConsumo[i].equalsIgnoreCase(consumoEnerg)){
-               
-                find=true;
+
+    private void comprovarConsumo(String consumoEnerg) {
+        String tiposConsumo[] = {"A", "B", "C", "D", "E", "F"};
+        boolean find = false;
+        for (int i = 0; i < tiposConsumo.length && !find; i++) {
+            if (tiposConsumo[i].equalsIgnoreCase(consumoEnerg)) {
+
+                find = true;
             }
         }
-        if(find){
-             this.consumoEnerg=consumoEnerg;
+        if (find) {
+            this.consumoEnerg = consumoEnerg;
         } else {
-            this.consumoEnerg=CONSUMOENERG_DEF;
+            this.consumoEnerg = CONSUMOENERG_DEF;
         }
     }
-    public double precioFinal(){
-        double resultado=0,precio;
-        switch(consumoEnerg){
-            case "A":precio=100;
-            case "B":precio=80;
-            case "C":precio=60;
-            case "D":precio=40;
-            case "E":precio=20;
-            case "F":precio=10;        
+
+    public double precioFinal() {
+        double resultado = 0, precioT = 0, precioP = 0;
+        switch (consumoEnerg) {
+            case "A":
+                precioT = 100;
+                break;
+            case "B":
+                precioT = 80;
+                break;
+            case "C":
+                precioT = 60;
+                break;
+            case "D":
+                precioT = 40;
+                break;
+            case "E":
+                precioT = 20;
+                break;
+            case "F":
+                precioT = 10;
+                break;
         }
+        if (peso > 0 && peso < 19) {
+            precioP = 10;
+        } else if (peso > 20 && peso < 49) {
+            precioP = 50;
+        } else if (peso > 50 && peso < 79) {
+            precioP = 80;
+        } else if (peso > 80) {
+            precioP = 100;
+
+        }
+        resultado = precioT + precioP;
+
         return resultado;
     }
 }
